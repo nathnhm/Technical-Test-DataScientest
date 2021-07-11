@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block body %}
+{% from "includes/formhelpers.html" import render_field %}
+
+<div class="topnav">
+    {% if session.logged_in %}
+        <a href="/logout/">Logout</a>
+    {% else %}
+        <a href="/login/">Login</a>
+        <a href="/register/">Sign up</a>
+    {% endif %}
+</div>
+<hr>
+
+{% if session['logged_in'] %}
+    <h5>Welcome, {{session['username'] }} {{session['name'] }} {{session['email'] }} </h5>
+
+    {% for user in session['usersList'] %}
+      <li>{{ user }}</li>
+    {% endfor %}
+
+{% endif %}
+
+{% endblock body %}
